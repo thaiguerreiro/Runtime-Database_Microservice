@@ -1,4 +1,4 @@
-let database = {};
+const database = {};
 
 // Creates or updates (overwrites) an items value in the database
 function setItem(key, value) {
