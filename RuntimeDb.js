@@ -44,36 +44,3 @@ function getItem(key) {
 // in the functions above.  because the keys of 'false' and '0'
 // would evaluate to false
 const isBadParameter = (p) => p == undefined || p == null;
-
-function main() {
-  console.log("----should work----");
-  console.log(setItem("hi", "hello"));
-  console.log(getItem("hi"));
-  console.log(deleteItem("hi"));
-  console.log(setItem(0, false));
-  console.log(getItem(0));
-  console.log(deleteItem(0));
-  console.log(
-    setItem("hi", {
-      text: "howdy!",
-      data: { numbers: [1, 2, 4, 5] },
-    }),
-  );
-  console.log(getItem("hi"));
-  console.log(setItem("hi", "yo"));
-  console.log(getItem("hi"));
-
-  console.log("\n\n----should fail----");
-  console.log(setItem(undefined, "hi"));
-  console.log(setItem(null, "hi"));
-  console.log(setItem("hi", undefined));
-  console.log(setItem("hi", null));
-  console.log(setItem(undefined, null));
-  console.log(getItem("hello world"));
-  console.log(getItem(null));
-  console.log(getItem(undefined));
-  console.log(deleteItem(null));
-  console.log(deleteItem(undefined));
-}
-
-main();
