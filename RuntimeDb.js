@@ -34,9 +34,9 @@ function getItem(key) {
     return { success: false, error: "bad parameter: key" };
 
   // get item's value matched with key
-  value = database[key];
   if (!Object.hasOwn(database, key))
     return { success: false, error: "key does not exist" };
+  value = database[key];
   return { success: true, data: value };
 }
 
