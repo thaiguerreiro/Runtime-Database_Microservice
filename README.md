@@ -7,15 +7,15 @@ Run 'npm start' to start server
 
 Save Item
 response = requests.post(http://localhost:5001/items, json={
-    "key": "swoooord",
-    "value": {"damage": 50, "rarity": "rare"}
+    "key": "key",
+    "value": {"trait1": value, "trait2": value}
 })
 Retrieve item
-response = requests.get(f"http://localhost:5001/items/{id}")
+response = requests.get(f"http://localhost:5001/items/{key}")
 Retrieve all items 
 response = requests.get("http://localhost:5001/items")
 Delete item
-response = requests.delete(f"http://localhost:5001/items/{id}")
+response = requests.delete(f"http://localhost:5001/items/{key}")
 
 
 How to RECEIVE data
