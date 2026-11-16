@@ -1,7 +1,12 @@
 # README
 ## Description
+Description
+A light database microservice that allows clients to save, retrieve, update, and delete data by keys through http requests.
+
+
 ### How to REQUEST data
 Run ```npm install``` in terminal Run ```npm start``` to start server
+import requests in client
 
 Save Item
 ```javascript
@@ -29,3 +34,95 @@ store request's response into a variable as shown above. Http handles request/re
 
 
 ## UML sequence diagram
+```
+UML Sequence Diagram
+Client                  Database_Microservice              Database
++-+                               |                           |
+| |      POST /items              |                           |
+| |   {key, value}                |                           |
+| | ---------------------------> +-+                          |
+| |                              | |                          |
+| |                       Extract key and value               |
+| |                              | |                          |
+| |                       Validate parameters                 |
+| |                              | |                          |
+| |                       Call setItem(key, value)            |
+| |                              | |                          |
+| |                              | |    Store key and value   |
+| |                              | |------------------------>+-+
+| |                              | |                         | |
+| |                              | |     Return success      | |
+| |                              | |<------------------------+-+
+| |                              | |                          |
+| |                       Create JSON response                |
+| |                              | |                          |
+| |         HTTP 200 OK          | |                          |
+| |      {"success": true}       | |                          |
+| |<- - - - - - - - - - - - - - -+-+                          |
+| |                               |                           |
+| |                               |                           |
+| |        GET /items/key         |                           |
+| |----------------------------->+-+                          |
+| |                              | |                          |
+| |                         Extract key                       |
+| |                              | |                          |
+| |                       Validate parameter                  |
+| |                              | |                          |
+| |                        Call getItem(key)                  |
+| |                              | |                          |
+| |                              | |    Check if key exists   |
+| |                              | |-----------------------> +-+
+| |                              | |                         | |
+| |                              | |    Return item value    | |
+| |                              | |<------------------------+-+
+| |                              | |                          |
+| |                         Create JSON response              |
+| |                              | |                          |
+| |         HTTP 200 OK          | |                          |
+| |{"success": true, "data": value}|                          |
+| |<- - - - - - - - - - - - - - -+-+                          |
+| |                               |                           |
+| |                               |                           |
+| |           GET /items          |                           |
+| |----------------------------->+-+                          |
+| |                              | |                          |
+| |                       Call getAllItems()                  |
+| |                              | |                          |
+| |                              | |    Retrieve all items    |
+| |                              | |------------------------>+-+
+| |                              | |                         | |
+| |                              | |    Return all items     | |
+| |                              | |<------------------------+-+
+| |                              | |                          |
+| |                      Create JSON response                 |
+| |                              | |                          |
+| |         HTTP 200 OK          | |                          |
+| | {"success": true, "data": {}}| |                          |
+| |<- - - - - - - - - - - - - - -+-+                          |
+| |                               |                           |
+| |                               |                           |
+| |      DELETE /items/key        |                           |
+| |----------------------------->+-+                          |
+| |                              | |                          |
+| |                         Extract key                       |
+| |                              | |                          |
+| |                       Validate parameter                  |
+| |                              | |                          |
+| |                      Call deleteItem(key)                 |
+| |                              | |                          |
+| |                              | |    Check if key exists   |
+| |                              | |-----------------------> +-+
+| |                              | |                         | |
+| |                              | |                Delete key and value
+| |                              | |                         | |
+| |                              | |      Return success     | |
+| |                              | |<------------------------+-+
+| |                              | |                          |
+| |                      Create JSON response                 |
+| |                              | |                          |
+| |         HTTP 200 OK          | |                          |
+| |      {"success": true}       | |                          |
+| |<- - - - - - - - - - - - - - -+-+                          |
+| |                               |                           |
++-+                               |                           |
+```
