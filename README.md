@@ -1,6 +1,5 @@
 # README
 ## Description
-Description
 A light database microservice that allows clients to save, retrieve, update, and delete data by keys through http requests.
 
 
